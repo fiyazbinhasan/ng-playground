@@ -1,28 +1,57 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
-  <div>
-    <label for="name">Name</label>
-    <input type="text" id="name" formControlName="name" />
-    <div *ngIf="name.invalid && (name.dirty || name.touched)">
-      <span *ngIf="name.errors.required">
-        <i>Name is required.</i>
-      </span>
-    </div>
-  </div>
-  <div>
-    <label for="email">Email</label>
-    <input type="text" id="email" formControlName="email" />
-    <div *ngIf="email.invalid && (email.dirty || email.touched)">
-      <span *ngIf="email.errors.required">
-        <i>Email is required.</i>
-      </span>
-      <span *ngIf="email.errors.email">
-        <i>Email is not valid.</i>
-      </span>
-    </div>
-  </div>
-  <button type="submit" [disabled]="userForm.pristine || userForm.invalid">
-    Save
-  </button>
-</form>
+<div class="columns">
+  <div class="column is-one-third">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="field">
+        <label class="label" for="name">Name</label>
+        <div class="control">
+          <input
+            class="input is-primary"
+            type="text"
+            id="name"
+            formControlName="name"
+          />
+          <div *ngIf="name.invalid && (name.dirty || name.touched)">
+            <p class="help is-danger" *ngIf="name.errors.required">
+              Name is required.
+            </p>
+          </div>
+        </div>
+      </div>
 
-<pre>{{ userForm.value | json }}</pre>
+      <div class="field">
+        <label class="label" for="email">Email</label>
+        <div class="control">
+          <input
+            class="input is-primary"
+            type="email"
+            id="email"
+            formControlName="email"
+          />
+          <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            <p class="help is-danger" *ngIf="email.errors.required">
+              Email is required.
+            </p>
+            <p class="help is-danger" *ngIf="email.errors.email">
+              Email is not valid.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <button
+            class="button is-primary"
+            type="submit"
+            [disabled]="userForm.pristine || userForm.invalid"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="column">
+    <pre class="user-pre">{{ userForm.value | json }}</pre>
+  </div>
+</div>
