@@ -1,10 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators
-} from "@angular/forms";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+
+import { CustomEmailValidator } from "../shared/custom-email.validator";
 
 @Component({
   selector: "app-user",
@@ -22,7 +19,10 @@ export class UserComponent implements OnInit {
     return this.userForm.get("email");
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private emailValidator: CustomEmailValidator
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -31,7 +31,11 @@ export class UserComponent implements OnInit {
   createForm() {
     this.userForm = this.fb.group({
       name: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]]
+      email: [
+        "",
+        [Validators.required, Validators.email],
+        [this.emailValidator.existingEmailValidator()]
+      ]
     });
   }
 

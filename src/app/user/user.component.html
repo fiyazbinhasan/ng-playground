@@ -34,6 +34,9 @@
             <p class="help is-danger" *ngIf="email.errors.email">
               Email is not valid.
             </p>
+            <p class="help is-danger" *ngIf="email.errors.existingEmail">
+              Email already exists.
+            </p>
           </div>
         </div>
       </div>
