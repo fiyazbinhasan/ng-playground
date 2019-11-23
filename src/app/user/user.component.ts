@@ -29,10 +29,21 @@ export class UserComponent implements OnInit {
   }
 
   createForm() {
-    this.userForm = this.fb.group({
-      name: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]]
-    });
+    this.userForm = this.fb.group(
+      {
+        name: ["", [Validators.required]],
+        email: ["", [Validators.required, Validators.email]]
+      },
+      { updateOn: "blur" }
+    );
+
+    // this.userForm = this.fb.group(
+    //   {
+    //     name: ["", { validators: [Validators.required], updateOn: "blur" }],
+    //     email: ["", [Validators.required, Validators.email]]
+    //   },
+    //   { updateOn: "submit" }
+    // );
   }
 
   onSubmit() {
