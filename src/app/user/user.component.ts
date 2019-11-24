@@ -20,9 +20,9 @@ export class UserComponent implements OnInit {
       this.fileName = file.name;
       this.file = file;
 
-      var reader = new FileReader();
+      const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = _event => {
+      reader.onload = event => {
         this.imageUrl = reader.result;
       };
     } else {
@@ -31,7 +31,7 @@ export class UserComponent implements OnInit {
   }
 
   onUpload() {
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append("avatar", this.file);
     console.log(formData.get("avatar"));
   }
