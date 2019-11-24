@@ -1,10 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators
-} from "@angular/forms";
+import { Component, OnInit, ViewChild } from "@angular/core";
 
 @Component({
   selector: "app-user",
@@ -12,30 +6,33 @@ import {
   styleUrls: ["./user.component.scss"]
 })
 export class UserComponent implements OnInit {
-  userForm: FormGroup;
+  fileName = "No file selected";
+  file: File;
+  imageUrl: string | ArrayBuffer =
+    "https://bulma.io/images/placeholders/480x480.png";
 
-  get name() {
-    return this.userForm.get("name");
+  constructor() {}
+
+  ngOnInit() {}
+
+  onChange(file: File) {
+    if (file && file.type === "image/png") {
+      this.fileName = file.name;
+      this.file = file;
+
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = _event => {
+        this.imageUrl = reader.result;
+      };
+    } else {
+      alert("Only png files are allowed");
+    }
   }
 
-  get email() {
-    return this.userForm.get("email");
-  }
-
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit() {
-    this.createForm();
-  }
-
-  createForm() {
-    this.userForm = this.fb.group({
-      name: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]]
-    });
-  }
-
-  onSubmit() {
-    console.log(this.userForm.value);
+  onUpload() {
+    let formData = new FormData();
+    formData.append("avatar", this.file);
+    console.log(formData.get("avatar"));
   }
 }

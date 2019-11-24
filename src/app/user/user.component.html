@@ -1,57 +1,48 @@
 <div class="columns">
   <div class="column is-one-third">
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
-      <div class="field">
-        <label class="label" for="name">Name</label>
-        <div class="control">
+    <div class="field">
+      <div class="file has-name is-primary">
+        <label class="file-label">
           <input
-            class="input is-primary"
-            type="text"
-            id="name"
-            formControlName="name"
+            class="file-input"
+            type="file"
+            name="file"
+            #fileInput
+            (change)="onChange(fileInput.files[0])"
           />
-          <div *ngIf="name.invalid && (name.dirty || name.touched)">
-            <p class="help is-danger" *ngIf="name.errors.required">
-              Name is required.
-            </p>
-          </div>
-        </div>
+          <span class="file-cta">
+            <span class="file-icon">
+              <fa-icon [icon]="['fas', 'upload']"></fa-icon>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+          <span class="file-name">
+            {{ fileName }}
+          </span>
+        </label>
       </div>
+    </div>
 
-      <div class="field">
-        <label class="label" for="email">Email</label>
-        <div class="control">
-          <input
-            class="input is-primary"
-            type="email"
-            id="email"
-            formControlName="email"
-          />
-          <div *ngIf="email.invalid && (email.dirty || email.touched)">
-            <p class="help is-danger" *ngIf="email.errors.required">
-              Email is required.
-            </p>
-            <p class="help is-danger" *ngIf="email.errors.email">
-              Email is not valid.
-            </p>
-          </div>
-        </div>
+    <div class="field">
+      <div class="control">
+        <button class="button is-primary" (click)="onUpload()">
+          Upload
+        </button>
       </div>
+    </div>
 
-      <div class="field">
-        <div class="control">
-          <button
-            class="button is-primary"
-            type="submit"
-            [disabled]="userForm.pristine || userForm.invalid"
-          >
-            Save
-          </button>
-        </div>
+    <article class="message is-danger">
+      <div class="message-body">
+        Only allowed image format is
+        <strong>png</strong>
       </div>
-    </form>
+    </article>
   </div>
   <div class="column">
-    <pre class="user-pre">{{ userForm.value | json }}</pre>
+    <figure class="image is-168x168">
+      <img [src]="imageUrl" />
+    </figure>
   </div>
 </div>
