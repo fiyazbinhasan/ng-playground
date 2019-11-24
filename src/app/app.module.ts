@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 import {
   FontAwesomeModule,
   FaIconLibrary
@@ -16,6 +17,7 @@ import { UserComponent } from "./user/user.component";
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FontAwesomeModule,
     AppRoutingModule
   ],

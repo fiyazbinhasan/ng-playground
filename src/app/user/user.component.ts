@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { UploaderService } from "../services/uploader.service";
 
 @Component({
   selector: "app-user",
@@ -11,7 +12,7 @@ export class UserComponent implements OnInit {
   imageUrl: string | ArrayBuffer =
     "https://bulma.io/images/placeholders/480x480.png";
 
-  constructor() {}
+  constructor(private uploader: UploaderService) {}
 
   ngOnInit() {}
 
@@ -31,8 +32,6 @@ export class UserComponent implements OnInit {
   }
 
   onUpload() {
-    const formData = new FormData();
-    formData.append("avatar", this.file);
-    console.log(formData.get("avatar"));
+    this.uploader.upload(this.file).subscribe(msg => console.log(msg));
   }
 }
