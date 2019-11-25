@@ -27,18 +27,21 @@
 
     <div class="field">
       <div class="control">
+        <progress
+          class="progress is-primary"
+          [attr.value]="progress.value"
+          max="100"
+        ></progress>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
         <button class="button is-primary" (click)="onUpload()">
           Upload
         </button>
       </div>
     </div>
-
-    <article class="message is-danger">
-      <div class="message-body">
-        Only allowed image format is
-        <strong>png</strong>
-      </div>
-    </article>
   </div>
   <div class="column">
     <figure class="image is-168x168">

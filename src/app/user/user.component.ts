@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { UploaderService } from "../services/uploader.service";
+import { UploaderService, Envelope } from "../services/uploader.service";
 
 @Component({
   selector: "app-user",
@@ -7,6 +7,7 @@ import { UploaderService } from "../services/uploader.service";
   styleUrls: ["./user.component.scss"]
 })
 export class UserComponent implements OnInit {
+  progress: Envelope<number>;
   fileName = "No file selected";
   file: File;
   imageUrl: string | ArrayBuffer =
@@ -14,24 +15,27 @@ export class UserComponent implements OnInit {
 
   constructor(private uploader: UploaderService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.uploader.progressSource.subscribe(
+      progress => (this.progress = progress)
+    );
+  }
 
   onChange(file: File) {
-    if (file && file.type === "image/png") {
+    if (file) {
       this.fileName = file.name;
       this.file = file;
 
       const reader = new FileReader();
       reader.readAsDataURL(file);
+
       reader.onload = event => {
         this.imageUrl = reader.result;
       };
-    } else {
-      alert("Only png files are allowed");
     }
   }
 
   onUpload() {
-    this.uploader.upload(this.file).subscribe(msg => console.log(msg));
+    this.uploader.upload(this.file).subscribe(message => console.log(message));
   }
 }
