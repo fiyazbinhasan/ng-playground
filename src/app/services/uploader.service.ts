@@ -5,21 +5,14 @@ import {
   HttpEventType,
   HttpEvent
 } from "@angular/common/http";
-import { map, tap, last, catchError } from "rxjs/operators";
+import { map, tap, last } from "rxjs/operators";
 import { BehaviorSubject } from "rxjs";
 
-export class Envelope<T> {
-  value: T;
-  message: string;
-}
 @Injectable({
   providedIn: "root"
 })
 export class UploaderService {
-  public progressSource = new BehaviorSubject<Envelope<number>>({
-    message: "No File Selected",
-    value: 0
-  });
+  public progressSource = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) {}
 
@@ -38,36 +31,27 @@ export class UploaderService {
 
     return this.http.request(req).pipe(
       map(event => this.getEventMessage(event, file)),
-      tap((envelope: Envelope<number>) => this.progressSource.next(envelope)),
+      tap((envelope: any) => this.processProgress(envelope)),
       last()
     );
   }
 
+  processProgress(envelope: any): void {
+    if (typeof envelope === "number") {
+      this.progressSource.next(envelope);
+    }
+  }
+
   private getEventMessage(event: HttpEvent<any>, file: File) {
     switch (event.type) {
-      case HttpEventType.Sent: {
-        const envelope = new Envelope<string>();
-        envelope.message = `Uploading file "${file.name}" of size ${file.size}.`;
-        return envelope;
-      }
-      case HttpEventType.UploadProgress: {
-        const percentDone = Math.round((100 * event.loaded) / event.total);
-        const envelope = new Envelope<number>();
-        envelope.value = percentDone;
-        envelope.message = `File "${file.name}" is ${percentDone}% uploaded.`;
-        return envelope;
-      }
-      case HttpEventType.Response: {
-        const envelope = new Envelope<number>();
-        envelope.value = 0;
-        envelope.message = `File "${file.name}" was completely uploaded!`;
-        return envelope;
-      }
-      default: {
-        const envelope = new Envelope<string>();
-        envelope.message = `File "${file.name}" surprising upload event: ${event.type}.`;
-        return envelope;
-      }
+      case HttpEventType.Sent:
+        return `Uploading file "${file.name}" of size ${file.size}.`;
+      case HttpEventType.UploadProgress:
+        return Math.round((100 * event.loaded) / event.total);
+      case HttpEventType.Response:
+        return `File "${file.name}" was completely uploaded!`;
+      default:
+        return `File "${file.name}" surprising upload event: ${event.type}.`;
     }
   }
 }

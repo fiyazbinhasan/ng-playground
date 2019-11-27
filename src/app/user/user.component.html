@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column is-one-third">
     <div class="field">
-      <div class="file has-name is-primary">
+      <div class="file has-name is-primary is-fullwidth">
         <label class="file-label">
           <input
             class="file-input"
@@ -25,11 +25,17 @@
       </div>
     </div>
 
-    <div class="field">
+    <article class="message" *ngIf="infoMessage">
+      <div class="message-body">
+        {{ infoMessage }}
+      </div>
+    </article>
+
+    <div class="field" *ngIf="!infoMessage">
       <div class="control">
         <progress
           class="progress is-primary"
-          [attr.value]="progress.value"
+          [attr.value]="progress"
           max="100"
         ></progress>
       </div>
@@ -37,14 +43,18 @@
 
     <div class="field">
       <div class="control">
-        <button class="button is-primary" (click)="onUpload()">
+        <button
+          class="button is-primary"
+          (click)="onUpload()"
+          [attr.disabled]="isUploading ? '' : null"
+        >
           Upload
         </button>
       </div>
     </div>
   </div>
   <div class="column">
-    <figure class="image is-168x168">
+    <figure class="image is-128x128">
       <img [src]="imageUrl" />
     </figure>
   </div>

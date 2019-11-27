@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { UploaderService, Envelope } from "../services/uploader.service";
+import { Component, OnInit } from "@angular/core";
+import { UploaderService } from "../services/uploader.service";
 
 @Component({
   selector: "app-user",
@@ -7,18 +7,21 @@ import { UploaderService, Envelope } from "../services/uploader.service";
   styleUrls: ["./user.component.scss"]
 })
 export class UserComponent implements OnInit {
-  progress: Envelope<number>;
-  fileName = "No file selected";
+  progress: number;
+  infoMessage: any;
+  isUploading: boolean = false;
   file: File;
+
   imageUrl: string | ArrayBuffer =
     "https://bulma.io/images/placeholders/480x480.png";
+  fileName: string = "No file selected";
 
   constructor(private uploader: UploaderService) {}
 
   ngOnInit() {
-    this.uploader.progressSource.subscribe(
-      progress => (this.progress = progress)
-    );
+    this.uploader.progressSource.subscribe(progress => {
+      this.progress = progress;
+    });
   }
 
   onChange(file: File) {
@@ -36,6 +39,13 @@ export class UserComponent implements OnInit {
   }
 
   onUpload() {
-    this.uploader.upload(this.file).subscribe(message => console.log(message));
+    this.infoMessage = null;
+    this.progress = 0;
+    this.isUploading = true;
+
+    this.uploader.upload(this.file).subscribe(message => {
+      this.isUploading = false;
+      this.infoMessage = message;
+    });
   }
 }
