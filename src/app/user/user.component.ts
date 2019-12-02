@@ -14,10 +14,6 @@ import {
 export class UserComponent implements OnInit {
   userForm: FormGroup;
 
-  get name() {
-    return this.userForm.get("name");
-  }
-
   get email() {
     return this.userForm.get("email");
   }
@@ -29,10 +25,12 @@ export class UserComponent implements OnInit {
   }
 
   createForm() {
-    this.userForm = this.fb.group({
-      name: ["", [Validators.required]],
-      email: ["", [Validators.required, Validators.email]]
-    });
+    this.userForm = this.fb.group(
+      {
+        email: ["", [Validators.required, Validators.email]]
+      },
+      { updateOn: "submit" }
+    );
   }
 
   onSubmit() {

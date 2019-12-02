@@ -1,57 +1,35 @@
-<div class="columns">
-  <div class="column is-one-third">
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
-      <div class="field">
-        <label class="label" for="name">Name</label>
-        <div class="control">
-          <input
-            class="input is-primary"
-            type="text"
-            id="name"
-            formControlName="name"
-          />
-          <div *ngIf="name.invalid && (name.dirty || name.touched)">
-            <p class="help is-danger" *ngIf="name.errors.required">
-              Name is required.
-            </p>
-          </div>
+<div class="card">
+  <div class="card-content">
+    <div class="content has-text-centered">
+      Check you email and confirm the subscription.
+    </div>
+    <div class="content">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="field is-grouped">
+          <p class="control is-expanded">
+            <input
+              class="input is-light is-rounded is-warning"
+              [ngClass]="{
+                'is-danger': email.invalid && (email.dirty || email.touched)
+              }"
+              type="text"
+              placeholder="Your email address"
+              id="email"
+              formControlName="email"
+            />
+          </p>
+          <p class="control">
+            <input
+              class="button is-warning is-light is-rounded is-outlined"
+              value="Subscribe"
+              type="submit"
+            />
+          </p>
         </div>
-      </div>
-
-      <div class="field">
-        <label class="label" for="email">Email</label>
-        <div class="control">
-          <input
-            class="input is-primary"
-            type="email"
-            id="email"
-            formControlName="email"
-          />
-          <div *ngIf="email.invalid && (email.dirty || email.touched)">
-            <p class="help is-danger" *ngIf="email.errors.required">
-              Email is required.
-            </p>
-            <p class="help is-danger" *ngIf="email.errors.email">
-              Email is not valid.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="control">
-          <button
-            class="button is-primary"
-            type="submit"
-            [disabled]="userForm.pristine || userForm.invalid"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-  <div class="column">
-    <pre class="user-pre">{{ userForm.value | json }}</pre>
-  </div>
+</div>
+<div>
+  {{ userForm.status }}
 </div>
