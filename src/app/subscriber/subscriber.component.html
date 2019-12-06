@@ -1,14 +1,11 @@
 <div class="card">
   <div class="card-content">
-    <div class="content has-text-centered">
-      Check you email and confirm the subscription.
-    </div>
     <div class="content">
-      <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()" novalidate>
+      <form [formGroup]="subscriptionForm" novalidate>
         <div class="field is-grouped">
           <p class="control is-expanded">
             <input
-              class="input is-light is-rounded is-warning"
+              class="input is-light is-warning"
               [ngClass]="{
                 'is-danger': email.invalid && (email.dirty || email.touched)
               }"
@@ -20,9 +17,10 @@
           </p>
           <p class="control">
             <input
-              class="button is-warning is-light is-rounded is-outlined"
+              class="button is-warning is-light is-outlined"
               value="Subscribe"
               type="submit"
+              (click)="onSubmit()"
             />
           </p>
         </div>

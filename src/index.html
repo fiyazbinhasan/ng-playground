@@ -8,15 +8,20 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>
-    <app-root></app-root>
     <div class="section">
       <div class="container">
         <h1 class="title">Subscription Form</h1>
         <h2 class="subtitle">
           A web component created with <code>@angular/elements</code> project
         </h2>
-        <subscriber-element></subscriber-element>
+        <subscriber-element
+          url="https://www.fiyazhasan.me/"
+        ></subscriber-element>
       </div>
     </div>
+    <script>
+      var el = document.querySelector('subscriber-element');
+      el.addEventListener('subscribed', evt => console.log(evt.detail));
+    </script>
   </body>
 </html>

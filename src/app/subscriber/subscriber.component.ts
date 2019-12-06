@@ -1,21 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators
-} from "@angular/forms";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: "app-subscriber",
-  templateUrl: "./subscriber.component.html",
-  styleUrls: ["./subscriber.component.scss"]
+  selector: 'app-subscriber',
+  templateUrl: './subscriber.component.html',
+  styleUrls: ['./subscriber.component.scss']
 })
 export class SubscriberComponent implements OnInit {
+  @Input() url: string;
+  @Output() subscribed: EventEmitter<string> = new EventEmitter<string>();
+
   subscriptionForm: FormGroup;
 
   get email() {
-    return this.subscriptionForm.get("email");
+    return this.subscriptionForm.get('email');
   }
 
   constructor(private fb: FormBuilder) {}
@@ -27,13 +25,17 @@ export class SubscriberComponent implements OnInit {
   createForm() {
     this.subscriptionForm = this.fb.group(
       {
-        email: ["", [Validators.required, Validators.email]]
+        email: ['', [Validators.required, Validators.email]]
       },
-      { updateOn: "submit" }
+      { updateOn: 'blur' }
     );
   }
 
   onSubmit() {
     console.log(this.subscriptionForm.value);
+    this.subscribed.emit(
+      'Please check your email and confirm your subscription'
+    );
+    console.log(this.url);
   }
 }
