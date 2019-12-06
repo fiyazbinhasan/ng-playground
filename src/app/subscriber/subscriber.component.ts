@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SubscriptionService } from '../shared/subscriber.service';
 
 @Component({
   selector: 'app-subscriber',
@@ -16,7 +17,10 @@ export class SubscriberComponent implements OnInit {
     return this.subscriptionForm.get('email');
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private subscriptionSvc: SubscriptionService
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -27,15 +31,17 @@ export class SubscriberComponent implements OnInit {
       {
         email: ['', [Validators.required, Validators.email]]
       },
-      { updateOn: 'blur' }
+      { updateOn: 'submit' }
     );
   }
 
   onSubmit() {
-    console.log(this.subscriptionForm.value);
-    this.subscribed.emit(
-      'Please check your email and confirm your subscription'
-    );
-    console.log(this.url);
+    if (this.subscriptionForm.status === 'VALID') {
+      this.subscriptionSvc
+        .register(this.url, this.email.value)
+        .subscribe(res => this.subscribed.emit(res));
+    } else {
+      this.subscriptionForm.updateValueAndValidity();
+    }
   }
 }

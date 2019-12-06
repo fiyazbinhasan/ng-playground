@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-content">
     <div class="content">
-      <form [formGroup]="subscriptionForm" novalidate>
+      <form [formGroup]="subscriptionForm" novalidate (ngSubmit)="onSubmit()">
         <div class="field is-grouped">
           <p class="control is-expanded">
             <input
@@ -20,7 +20,6 @@
               class="button is-warning is-light is-outlined"
               value="Subscribe"
               type="submit"
-              (click)="onSubmit()"
             />
           </p>
         </div>
