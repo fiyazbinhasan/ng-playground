@@ -4,12 +4,14 @@ import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { UserComponent } from "./user/user.component";
+import { SubscriberComponent } from "./subscriber/subscriber.component";
+import { SubscriberService } from "./shared/subscriber.service";
 
 @NgModule({
-  declarations: [AppComponent, UserComponent],
+  declarations: [AppComponent, SubscriberComponent],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [SubscriberService],
+  bootstrap: [AppComponent],
+  entryComponents: [SubscriberComponent]
 })
 export class AppModule {}

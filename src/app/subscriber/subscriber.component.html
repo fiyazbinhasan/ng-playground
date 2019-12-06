@@ -4,7 +4,7 @@
       Check you email and confirm the subscription.
     </div>
     <div class="content">
-      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+      <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="field is-grouped">
           <p class="control is-expanded">
             <input
@@ -29,7 +29,4 @@
       </form>
     </div>
   </div>
-</div>
-<div>
-  {{ userForm.status }}
 </div>

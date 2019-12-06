@@ -7,15 +7,15 @@ import {
 } from "@angular/forms";
 
 @Component({
-  selector: "app-user",
-  templateUrl: "./user.component.html",
-  styleUrls: ["./user.component.scss"]
+  selector: "app-subscriber",
+  templateUrl: "./subscriber.component.html",
+  styleUrls: ["./subscriber.component.scss"]
 })
-export class UserComponent implements OnInit {
-  userForm: FormGroup;
+export class SubscriberComponent implements OnInit {
+  subscriptionForm: FormGroup;
 
   get email() {
-    return this.userForm.get("email");
+    return this.subscriptionForm.get("email");
   }
 
   constructor(private fb: FormBuilder) {}
@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
   }
 
   createForm() {
-    this.userForm = this.fb.group(
+    this.subscriptionForm = this.fb.group(
       {
         email: ["", [Validators.required, Validators.email]]
       },
@@ -34,6 +34,6 @@ export class UserComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.userForm.value);
+    console.log(this.subscriptionForm.value);
   }
 }
