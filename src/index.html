@@ -19,9 +19,18 @@
         ></subscriber-element>
       </div>
     </div>
+    <div class="section">
+      <div class="container">
+        <h2 class="subtitle">Console</h2>
+        <pre></pre>
+      </div>
+    </div>
     <script>
       var el = document.querySelector('subscriber-element');
-      el.addEventListener('subscribed', evt => console.log(evt.detail));
+      el.addEventListener('subscribed', evt => {
+        const pre = document.querySelector('pre');
+        pre.innerText += `Log: ${evt.detail}\n`;
+      });
     </script>
   </body>
 </html>

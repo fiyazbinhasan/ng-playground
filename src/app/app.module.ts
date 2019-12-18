@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { SubscriberComponent } from './subscriber/subscriber.component';
-
 import { Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
+
+import { SubscriberComponent } from './subscriber/subscriber.component';
 
 @NgModule({
   declarations: [SubscriberComponent],

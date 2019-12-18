@@ -10,8 +10,8 @@ export class SubscriptionService {
 
   register(url: string, email: string): Observable<string | undefined> {
     // Create a POST request using the url and register email in the backend
-    return of('Please check your email and confirm subscription').pipe(
-      delay(500)
-    );
+    return of(
+      `Please check your email (${email}) and confirm subscription`
+    ).pipe(delay(500));
   }
 }
