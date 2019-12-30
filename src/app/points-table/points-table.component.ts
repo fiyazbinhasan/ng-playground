@@ -7,11 +7,11 @@ import {
 } from "@angular/forms";
 
 @Component({
-  selector: "app-user",
-  templateUrl: "./user.component.html",
-  styleUrls: ["./user.component.scss"]
+  selector: "app-points-table",
+  templateUrl: "./points-table.component.html",
+  styleUrls: ["./points-table.component.scss"]
 })
-export class UserComponent implements OnInit {
+export class PointsTableComponent implements OnInit {
   structure: any;
   data: Array<any>;
 
