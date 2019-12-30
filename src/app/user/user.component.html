@@ -1,57 +1,37 @@
 <div class="columns">
-  <div class="column is-one-third">
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
-      <div class="field">
-        <label class="label" for="name">Name</label>
-        <div class="control">
-          <input
-            class="input is-primary"
-            type="text"
-            id="name"
-            formControlName="name"
-          />
-          <div *ngIf="name.invalid && (name.dirty || name.touched)">
-            <p class="help is-danger" *ngIf="name.errors.required">
-              Name is required.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label" for="email">Email</label>
-        <div class="control">
-          <input
-            class="input is-primary"
-            type="email"
-            id="email"
-            formControlName="email"
-          />
-          <div *ngIf="email.invalid && (email.dirty || email.touched)">
-            <p class="help is-danger" *ngIf="email.errors.required">
-              Email is required.
-            </p>
-            <p class="help is-danger" *ngIf="email.errors.email">
-              Email is not valid.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="control">
-          <button
-            class="button is-primary"
-            type="submit"
-            [disabled]="userForm.pristine || userForm.invalid"
+  <div class="column is-half">
+    <table class="table is-fullwidth is-hoverable is-striped">
+      <thead>
+        <tr>
+          <th><abbr title="Team Name">Team</abbr></th>
+          <th><abbr title="Played">Pld</abbr></th>
+          <th><abbr title="Won">W</abbr></th>
+          <th><abbr title="Lost">L</abbr></th>
+          <th><abbr title="Points">Pts</abbr></th>
+          <th>Qualified for Semi Finals</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{ item.team }}</td>
+          <td>{{ item.played }}</td>
+          <td>{{ item.won }}</td>
+          <td>{{ item.lost }}</td>
+          <td>{{ item.points }}</td>
+          <td
+            [ngStyle]="{
+              color: item.isQualified
+                ? 'hsl(141, 53%, 53%)'
+                : 'hsl(348, 100%, 61%)'
+            }"
           >
-            Save
-          </button>
-        </div>
-      </div>
-    </form>
+            <b>{{ item.isQualified | yesNo }}</b>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="column">
-    <pre class="user-pre">{{ userForm.value | json }}</pre>
+    <pre class="user-pre">{{ structure | json }}</pre>
   </div>
 </div>
