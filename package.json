@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "@angular/animations": "~8.2.14",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
@@ -37,6 +38,8 @@
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
 =======
+=======
+>>>>>>> ng-playgroud-bulma
     "@angular/animations": "~9.1.11",
     "@angular/common": "~9.1.11",
     "@angular/compiler": "~9.1.11",
@@ -45,6 +48,7 @@
     "@angular/platform-browser": "~9.1.11",
     "@angular/platform-browser-dynamic": "~9.1.11",
     "@angular/router": "~9.1.11",
+    "bulma": "^0.9.0",
     "rxjs": "~6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -54,11 +58,14 @@
     "@angular/cli": "~9.1.9",
     "@angular/compiler-cli": "~9.1.11",
     "@angular/language-service": "~9.1.11",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> ng-playgroud-bulma
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
