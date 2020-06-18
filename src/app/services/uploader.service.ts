@@ -17,12 +17,14 @@ export class UploaderService {
   constructor(private http: HttpClient) {}
 
   upload(file: File) {
+    const uploadUrl = "TODO: Relpace with your file upload endpoint"
+
     let formData = new FormData();
     formData.append("avatar", file);
 
     const req = new HttpRequest(
       "POST",
-      "http://localhost:5000/upload",
+      uploadUrl,
       formData,
       {
         reportProgress: true
