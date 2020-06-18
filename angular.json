@@ -30,15 +30,7 @@
             "styles": [
               "src/styles.scss"
             ],
-<<<<<<< HEAD
-            "scripts": [
-              {
-                "input": "node_modules/document-register-element/build/document-register-element.js"
-              }
-            ]
-=======
             "scripts": []
->>>>>>> ng-playgroud-bulma
           },
           "configurations": {
             "production": {
