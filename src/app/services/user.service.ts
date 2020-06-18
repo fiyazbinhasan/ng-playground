@@ -11,7 +11,6 @@ export class UserService {
   constructor() {}
 
   getByEmail(email: string): Observable<User | undefined> {
-    console.log("Fire");
     const user = users.find(user => user.email === email);
     return of(user).pipe(delay(500));
   }
