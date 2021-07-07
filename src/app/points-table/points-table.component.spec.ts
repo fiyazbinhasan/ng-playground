@@ -1,19 +1,19 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { UserComponent } from "./points-table.component";
+import { PointsTableComponent } from "./points-table.component";
 
 describe("UserComponent", () => {
-  let component: UserComponent;
-  let fixture: ComponentFixture<UserComponent>;
+  let component: PointsTableComponent;
+  let fixture: ComponentFixture<PointsTableComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [UserComponent]
+      declarations: [PointsTableComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserComponent);
+    fixture = TestBed.createComponent(PointsTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
