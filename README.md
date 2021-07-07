@@ -1,27 +1,15 @@
-# NgPlayground
+# ng-playground
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
+Hand-picked interesting topics of Angular. Branch-wise code with the relevant blog post for a smooth and easy walkthrough.
 
-## Development server
+| Branch      | Blog |
+| ----------- | ----------- |
+| [ng-playgroud-bulma](https://github.com/fiyazbinhasan/ng-playground/tree/ng-playgroud-bulma) | [Adding Bootstrap/Bulma/CSS frameworks to Angular](https://fiyazhasan.me/tips-and-tricks/) |
+| [ng-playground-updateon-blur-submit](https://github.com/fiyazbinhasan/ng-playground/tree/ng-playground-updateon-blur-submit) | [Angular Form Validation on Blur and Submit](https://fiyazhasan.me/angular-forms-validation-updateon-blur/) |
+| [ng-playground-async-validation](https://github.com/fiyazbinhasan/ng-playground/tree/ng-playground-async-validation) | [Asynchronous Validation in Angular](https://fiyazhasan.me/asynchronous-validation-in-angulars-reactive-forms-control/) |
+| [ng-playground-upload-file](https://github.com/fiyazbinhasan/ng-playground/tree/ng-playground-upload-file) | [Image Upload in Angular with Preview & Progress](https://fiyazhasan.me/angular-file-upload-using-asp-net-core/) |
+| [ng-playground-pipes](https://github.com/fiyazbinhasan/ng-playground/tree/ng-playground-pipes) | [Angular Pipe for Handling Boolean Types](https://fiyazhasan.me/angular-pipe-for-handling-boolean-types/) |
+| [ng-web-components](https://github.com/fiyazbinhasan/ng-playground/tree/ng-web-components) | [Shipping Angular Elements as Web Components](https://fiyazhasan.me/shipping-angular-component-as-web-component/) |
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Like this repo?
+Show your support by simply putting a star on the repository.
